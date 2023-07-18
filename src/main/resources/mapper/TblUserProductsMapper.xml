@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.expirytracker.mapper.TblUserProductsMapper">
+  <resultMap id="BaseResultMap" type="com.app.expirytracker.model.TblUserProducts">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="prod_id" jdbcType="INTEGER" property="prodId" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="quantity" jdbcType="INTEGER" property="quantity" />
+    <result column="created_by" jdbcType="INTEGER" property="createdBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_mod_by" jdbcType="INTEGER" property="lastModBy" />
+    <result column="last_mod_time" jdbcType="TIMESTAMP" property="lastModTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    id, user_id, prod_id, expire_time, quantity, created_by, create_time, last_mod_by, 
+    last_mod_time, status
+  </sql>
+  <select id="selectByExample" parameterType="com.app.expirytracker.model.TblUserProductsExample" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tbl_user_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user_products
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from tbl_user_products
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.app.expirytracker.model.TblUserProductsExample">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from tbl_user_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.app.expirytracker.model.TblUserProducts" useGeneratedKeys="true">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    insert into tbl_user_products (user_id, prod_id, expire_time, 
+      quantity, created_by, create_time, 
+      last_mod_by, last_mod_time, status
+      )
+    values (#{userId,jdbcType=INTEGER}, #{prodId,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{quantity,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastModBy,jdbcType=INTEGER}, #{lastModTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.app.expirytracker.model.TblUserProducts" useGeneratedKeys="true">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    insert into tbl_user_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="prodId != null">
+        prod_id,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastModBy != null">
+        last_mod_by,
+      </if>
+      <if test="lastModTime != null">
+        last_mod_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModBy != null">
+        #{lastModBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastModTime != null">
+        #{lastModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.app.expirytracker.model.TblUserProductsExample" resultType="java.lang.Long">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select count(*) from tbl_user_products
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update tbl_user_products
+    <set>
+      <if test="row.id != null">
+        id = #{row.id,jdbcType=INTEGER},
+      </if>
+      <if test="row.userId != null">
+        user_id = #{row.userId,jdbcType=INTEGER},
+      </if>
+      <if test="row.prodId != null">
+        prod_id = #{row.prodId,jdbcType=INTEGER},
+      </if>
+      <if test="row.expireTime != null">
+        expire_time = #{row.expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.quantity != null">
+        quantity = #{row.quantity,jdbcType=INTEGER},
+      </if>
+      <if test="row.createdBy != null">
+        created_by = #{row.createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="row.createTime != null">
+        create_time = #{row.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.lastModBy != null">
+        last_mod_by = #{row.lastModBy,jdbcType=INTEGER},
+      </if>
+      <if test="row.lastModTime != null">
+        last_mod_time = #{row.lastModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="row.status != null">
+        status = #{row.status,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update tbl_user_products
+    set id = #{row.id,jdbcType=INTEGER},
+      user_id = #{row.userId,jdbcType=INTEGER},
+      prod_id = #{row.prodId,jdbcType=INTEGER},
+      expire_time = #{row.expireTime,jdbcType=TIMESTAMP},
+      quantity = #{row.quantity,jdbcType=INTEGER},
+      created_by = #{row.createdBy,jdbcType=INTEGER},
+      create_time = #{row.createTime,jdbcType=TIMESTAMP},
+      last_mod_by = #{row.lastModBy,jdbcType=INTEGER},
+      last_mod_time = #{row.lastModTime,jdbcType=TIMESTAMP},
+      status = #{row.status,jdbcType=INTEGER}
+    <if test="example != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.app.expirytracker.model.TblUserProducts">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update tbl_user_products
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModBy != null">
+        last_mod_by = #{lastModBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastModTime != null">
+        last_mod_time = #{lastModTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.app.expirytracker.model.TblUserProducts">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update tbl_user_products
+    set user_id = #{userId,jdbcType=INTEGER},
+      prod_id = #{prodId,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      quantity = #{quantity,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_mod_by = #{lastModBy,jdbcType=INTEGER},
+      last_mod_time = #{lastModTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findProductsByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user_products
+    where user_id = #{id,jdbcType=INTEGER}
+  </select>
+
+</mapper>

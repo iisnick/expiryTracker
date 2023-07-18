@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新用户注册</title>
+</head>
+<body>
+<h2 align="center">新用户注册</h2>
+<hr width="40%" color="gray"/>
+<form action="/doregister" method="post" enctype="application/x-www-form-urlencoded">
+    <table width="40%" bgcolor="gray" align="center">
+        <tr>
+            <td align="right">用户名：</td>
+            <td>
+                <input type="text" name="username" size="25px" maxlength="10" placeholder="请输入用户名最长10位" required/>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">密码：</td>
+            <td>
+                <input type="password" name="password" size="25px" maxlength="20" placeholder="请输入密码最长20位" required>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">角色：</td>
+            <td>
+                <label>
+                    <select name="role">
+                        <option>--请选择角色--</option>
+                        <option th:each="role:${roles}"
+                                th:value="${role.id}"
+                                th:text="${role.name}"
+                                th:selected="${role==role.id}"></option>
+                    </select>
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <input type="submit" value="提交注册">
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

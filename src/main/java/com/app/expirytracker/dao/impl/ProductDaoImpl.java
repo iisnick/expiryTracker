@@ -5,7 +5,6 @@ import com.app.expirytracker.mapper.TblProductMapper;
 import com.app.expirytracker.mapper.TblUserProductsMapper;
 import com.app.expirytracker.model.TblProduct;
 import com.app.expirytracker.model.TblUserProducts;
-import com.app.expirytracker.model.TblUserProductsExample;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +25,11 @@ public class ProductDaoImpl implements ProductDao {
 
     public int insertUserProduct(TblUserProducts tblUserProducts) {
         return tblUserProductsMapper.insert(tblUserProducts);
+    }
+
+    @Override
+    public int updateUserProduct(TblUserProducts tblUserProducts) {
+        return tblUserProductsMapper.updateByPrimaryKey(tblUserProducts);
     }
 
     @Override

@@ -13,6 +13,8 @@ public interface ProductDao {
 
     int insertUserProduct(TblUserProducts tblUserProducts);
 
+    int updateUserProduct(TblUserProducts tblUserProducts);
+
     int createProduct(TblProduct tblProduct);
 
 }

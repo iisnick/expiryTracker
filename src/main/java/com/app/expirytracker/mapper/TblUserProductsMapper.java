@@ -61,6 +61,9 @@ public interface TblUserProductsMapper {
      */
     int updateByPrimaryKey(TblUserProducts row);
 
-    List<TblUserProducts> findProductsByUserId(int userId);
+    List<TblUserProducts> findProductsByUserId(int userId,int status);
+
+    int deactivateUserProduct(TblUserProducts row);
+
 
 }

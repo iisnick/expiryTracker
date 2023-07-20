@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         TblUser user = userDao.loadUserByUsername(username);
         if(user == null){
-            throw new UsernameNotFoundException("账户不存在！！！");
+            throw new UsernameNotFoundException("Account does not exists");
         }
         user.setRoles(userDao.getUserRolesByUid(user.getId()));
         return user;
@@ -30,24 +30,20 @@ public class UserService implements UserDetailsService {
     public String addUserByUsername(UserRegister userRegister){
         TblUser newuser = userDao.loadUserByUsername(userRegister.getUsername());
         if (newuser != null){
-            return "账户存在，注册失败！";
+            return "Account exists!";
         }else {
-            //新用户密码采用BCryptPasswordEncoder(10)格式存入数据库
             userRegister.setPassword(new BCryptPasswordEncoder(10).encode(userRegister.getPassword()));
-            //设置用户状态可用，没有锁定
-            //执行用户注册
             int adduser = userDao.addUserByUsername(userRegister);
-            //用户成功注册后，添加用户角色
             if(adduser > 0){
                 TblUser getUser =userDao.loadUserByUsername(userRegister.getUsername());
                 int addRole = userDao.addRole(getUser.getId(),userRegister.getRole());
                 if (addRole > 0){
-                    return "账户注册成功，角色注册成功！";
+                    return "Account registered，Role registered!";
                 }else{
-                    return "账户注册成功！角色注册失败！";
+                    return "Account registered，Role registered failed！";
                 }
             }else {
-                return "账户注册失败！";
+                return "Account registered failed！";
             }
         }
     }

@@ -19,8 +19,8 @@ public class ProductDaoImpl implements ProductDao {
     @Resource
     TblProductMapper tblProductMapper;
 
-    public List<TblUserProducts> findProductsByUserId(int userId) {
-        return tblUserProductsMapper.findProductsByUserId(userId);
+    public List<TblUserProducts> findProductsByUserId(int userId,int status) {
+        return tblUserProductsMapper.findProductsByUserId(userId,status);
     }
 
     public int insertUserProduct(TblUserProducts tblUserProducts) {
@@ -30,6 +30,11 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public int updateUserProduct(TblUserProducts tblUserProducts) {
         return tblUserProductsMapper.updateByPrimaryKey(tblUserProducts);
+    }
+
+    @Override
+    public int deactivateUserProduct(TblUserProducts tblUserProducts) {
+        return tblUserProductsMapper.deactivateUserProduct(tblUserProducts);
     }
 
     @Override

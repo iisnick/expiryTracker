@@ -29,7 +29,9 @@ public class UserDaoImpl implements UserDao {
     @Override
     public TblUser loadUserByUsername(String username) {
         TblUser user = userMapper.loadUserByUsername(username);
-        user.setRoles(roleMapper.getRoleByUsername(username));
+        if(null!=user) {
+            user.setRoles(roleMapper.getRoleByUsername(username));
+        }
         return user;
     }
 
